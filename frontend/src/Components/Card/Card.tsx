@@ -10,11 +10,14 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ companyName, ticker, currency, exchange }) => {
     return (
-      <div className="border p-4 m-2 rounded shadow w-full max-w-md">
-        <h2 className="text-lg font-bold">{companyName}</h2>
-        <p className="text-gray-700">Ticker: {ticker}</p>
-        <p className="text-gray-600">Currency: {currency}</p>
-        <p className="text-gray-500">Exchange: {exchange}</p>
+      <div className="card">
+        <div className="details"> 
+            <img src="https://media.istockphoto.com/id/138279113/photo/colored-ticker-board-on-black.jpg?s=612x612&w=0&k=20&c=cP3DhuSfAn4tR66ewnvl5WT4rQ5fBcyJDgJ3zMw7Mlo=" alt="stock" />
+            <h2>{companyName}</h2>
+            <p >Ticker: {ticker}</p>
+            <p >Currency: {currency}</p>
+            <p >Exchange: {exchange}</p>
+        </div>
       </div>
     );
   };
