@@ -5,6 +5,8 @@ import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
 import { searchCompanies } from './api';
 import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio';
+import Navbar from './Components/Navbar/Navbar';
+import Hero from './Components/Hero/Hero';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -62,6 +64,8 @@ function App() {
 
   return (
     <div className="App p-4">
+      <Navbar />
+      {/* <Hero /> */}
       <Search search={search} handleChange={handleChange} handleSearch={handleSearch} />
       {serverError && <h1>{serverError}</h1>}
 
