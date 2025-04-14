@@ -1,14 +1,16 @@
-import React, { JSX } from 'react'
+import React, { JSX, SyntheticEvent } from 'react'
 import "./Card.css";
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
 
 interface CardProps {
     companyName: string;
     ticker: string;
     currency: string;
     exchange: string;
+    onPortfolioCreate: (e: SyntheticEvent) => void;
 };
 
-const Card: React.FC<CardProps> = ({ companyName, ticker, currency, exchange }) => {
+const Card: React.FC<CardProps> = ({ companyName, ticker, currency, exchange, onPortfolioCreate }) => {
     return (
       <div className="card">
         <div className="details"> 
@@ -17,6 +19,9 @@ const Card: React.FC<CardProps> = ({ companyName, ticker, currency, exchange }) 
             <p >Ticker: {ticker}</p>
             <p >Currency: {currency}</p>
             <p >Exchange: {exchange}</p>
+            <AddPortfolio 
+            onPortfolioCreate={onPortfolioCreate} 
+            symbol={ticker}/>
         </div>
       </div>
     );
