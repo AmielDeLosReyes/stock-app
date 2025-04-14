@@ -52,6 +52,12 @@ function App() {
     setPortfolioValues(updatedPortfolio);
   }
 
+  const onDeleteStockFromPortfolio = (stock: string) => {
+    console.log("Removing stock from portfolio:", stock);
+    const updated = portfolioValues.filter((item) => item !== stock);
+    setPortfolioValues(updated);
+  };
+
 
 
   return (
@@ -59,7 +65,10 @@ function App() {
       <Search search={search} handleChange={handleChange} handleSearch={handleSearch} />
       {serverError && <h1>{serverError}</h1>}
 
-      <ListPortfolio portfolioValues={portfolioValues} />
+      <ListPortfolio 
+        portfolioValues={portfolioValues} 
+        onDeleteStockFromPortfolio={onDeleteStockFromPortfolio}
+      />
       {loading ? (
         <p className="text-gray-600">Loading...</p>
       ) : (
