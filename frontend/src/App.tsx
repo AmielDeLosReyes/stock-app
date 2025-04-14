@@ -4,12 +4,14 @@ import { CompanySearch } from './company';
 import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
 import { searchCompanies } from './api';
+import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio';
 
 function App() {
   const [search, setSearch] = useState('');
   const [companies, setCompanies] = useState<CompanySearch[]>([]);
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -39,10 +41,15 @@ function App() {
     }
   };
 
-  const onPortfolioCreate = (e: SyntheticEvent) => {
+  const onPortfolioCreate = (e: any) => {
     e.preventDefault();
     console.log(`Adding to portfolio!`);
-    console.log(e);
+    const exists = portfolioValues.find((value) => value === e.target[0].value)
+    if(exists) {
+      return;
+    }
+    const updatedPortfolio = [...portfolioValues, e.target[0].value];
+    setPortfolioValues(updatedPortfolio);
   }
 
 
@@ -51,11 +58,14 @@ function App() {
     <div className="App p-4">
       <Search search={search} handleChange={handleChange} handleSearch={handleSearch} />
       {serverError && <h1>{serverError}</h1>}
+
+      <ListPortfolio portfolioValues={portfolioValues} />
       {loading ? (
         <p className="text-gray-600">Loading...</p>
       ) : (
         <CardList companies={companies} onPortfolioCreate={onPortfolioCreate}/>
       )}
+
     </div>
   );
 }
