@@ -1,6 +1,7 @@
 import React, { JSX, SyntheticEvent } from 'react';
 import "./Card.css";
 import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   companyName: string;
@@ -23,9 +24,9 @@ const Card: React.FC<CardProps> = ({
       id={ticker}
     >
       <div className="flex flex-col items-center md:items-start">
-        <h2 className="font-bold text-center text-veryDarkViolet md:text-left">
+        <Link to={`/company/${ticker}`} className="font-bold text-center text-veryDarkViolet md:text-left">
           {companyName} ({ticker})
-        </h2>
+        </Link>
         <p className="text-black">Currency: {currency}</p>
         <p className="font-bold text-black">Exchange: {exchange}</p>
       </div>
